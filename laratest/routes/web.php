@@ -37,6 +37,17 @@ Route::get('/abc', function () {
 Route::get('/login', 'App\Http\Controllers\LoginController@index');
 Route::post('/login', 'App\Http\Controllers\LoginController@verify');
 Route::get('/test', 'App\Http\Controllers\LoginController@test');
+
 Route::get('/home', 'App\Http\Controllers\HomeController@index');
 Route::get('/home/userlist', 'App\Http\Controllers\HomeController@userlist');
+
+Route::get('/home/create', 'App\Http\Controllers\HomeController@create');
+Route::post('/home/create', 'App\Http\Controllers\HomeController@store');
+
+Route::get('/home/edit/{id}', 'App\Http\Controllers\HomeController@edit');
+Route::post('/home/edit/{id}', 'App\Http\Controllers\HomeController@update');
+
+Route::get('/home/delete/{id}', 'App\Http\Controllers\HomeController@delete');
+Route::post('/home/delete/{id}', 'App\Http\Controllers\HomeController@destroy');
+
 Route::get('/logout', 'App\Http\Controllers\LogoutController@index');

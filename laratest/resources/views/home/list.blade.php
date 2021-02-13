@@ -22,21 +22,14 @@
             <td>PASSWORD</td>
         </tr>
 
+        @for($i=0; $i < count($list); $i++)
         <tr>
-            <td>ID</td>
-            <td>NAME</td>
-            <td>EMAIL</td>
-            <td>PASSWORD</td>
+            <td>{{ $list[$i]['id'] }}</td>
+            <td>{{ $list[$i]['name'] }}</td>
+            <td>{{ $list[$i]['email'] }}</td>
+            <td>{{ $list[$i]['password'] }}</td>
         </tr>
-
-        <tr>
-            <td>ID</td>
-            <td>NAME</td>
-            <td>EMAIL</td>
-            <td>PASSWORD</td>
-        </tr>
-
-
+        @endfor
     </table>
 </body>
 </html>

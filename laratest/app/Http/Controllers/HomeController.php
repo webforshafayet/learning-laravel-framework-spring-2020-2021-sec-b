@@ -33,7 +33,17 @@ class HomeController extends Controller
     }
     public function userlist(){
 
-        return view('home.list');
+        //return view('home.list');
+
+        // db model userlist
+
+        $userlist = [
+            ['id'=>1, 'name'=>'shafayet', 'email'=> 'shafayet@aiub.edu', 'password'=>'123'],
+            ['id'=>2, 'name'=>'abc', 'email'=> 'abc@aiub.edu', 'password'=>'456'],
+            ['id'=>3, 'name'=>'xyz', 'email'=> 'xyz@aiub.edu', 'password'=>'789']
+        ];
+
+        return view('home.list')->with('list', $userlist);
 
     }
 }

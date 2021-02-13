@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -13,7 +14,10 @@ class LoginController extends Controller
         return view('login.test'); 
     }
 
-    public function verify(){
+    public function verify(Request $req){
+         
+        echo $req -> username."<br>";
+        echo $req -> password;
 
          echo "posted";
     }

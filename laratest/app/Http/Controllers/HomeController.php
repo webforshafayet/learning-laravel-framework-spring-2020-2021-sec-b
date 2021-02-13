@@ -43,15 +43,33 @@ class HomeController extends Controller
         echo $req->username;
 
        // return redirect('/home/userlist');
+       $userlist = $this->getUserlist();
+       //return view('home.list')->with('list', $userlist);
+
     }
 
 
     public function edit($id){
 
-        return view('home.edit')->with('id',$id);
+      //  return view('home.edit')->with('id', $id);
+        $userlist= $this->getUserlist();
+        $user = [];
+
+        foreach($userlist as $u){
+            if($u['id'] == $id ){
+                $user = $u;
+                break;
+            }
+        }
+
+       // return view('home.edit')->with('id',$id);
+       //$user =  ['id'=>2, 'username'=>'abc', 'email'=> 'abc@aiub.edu', 'password'=>'456'];
+        return view('home.edit')->with('user', $user);
     }
 
     public function update($id, Request $req){
+
+        //$user = ['id'=> $id, 'name'=> $req->name, 'email'=> $req->email,'password'=>$req->password];
 
         //updating DB or model
         return redirect('/home/userlist');

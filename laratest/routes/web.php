@@ -20,20 +20,23 @@ Route::get('/', function () {
 });
 
 Route::get('/outlogin', function () {
-    return view('login');  
+    return view('login');
 });
 
 Route::get('/inlogin', function () {
-    return view('login.index');  
+    return view('login.index');
 });
 
 Route::get('/abc', function () {
-    return view('login.test');  
+    return view('login.test');
 });
 
 //Route::get('/login', 'LoginController@index');
- 
+
 
 Route::get('/login', 'App\Http\Controllers\LoginController@index');
 Route::post('/login', 'App\Http\Controllers\LoginController@verify');
 Route::get('/test', 'App\Http\Controllers\LoginController@test');
+Route::get('/home', 'App\Http\Controllers\HomeController@index');
+Route::get('/home/userlist', 'App\Http\Controllers\HomeController@userlist');
+Route::get('/logout', 'App\Http\Controllers\LogoutController@index');

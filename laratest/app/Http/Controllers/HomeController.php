@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function index(Request $req){
           // return view('home.index');
 
        // return view('home.index', ['name'=> 'xyz', 'id'=>12]);
@@ -28,7 +28,14 @@ class HomeController extends Controller
         //          ->withName($name)
         //          ->withId($id);
 // alternative---------------------------------------------
-        return view('home.index', compact('id', 'name'));
+        //return view('home.index', compact('id', 'name'));
+
+        if($req->session()->has('username')){                   // page sequre unauthorized access
+            return view('home.index', compact('id', 'name'));
+        }else{
+            $req->session()->flash('msg', 'invalid request...login first!');
+            return redirect('/login');
+        }
 
     }
 

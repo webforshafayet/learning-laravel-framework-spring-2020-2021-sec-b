@@ -54,9 +54,19 @@ class HomeController extends Controller
     public function store(Request $req){
 
         //insert into DB or model...
-        echo $req->username;
+        $user = new User();
+        $user->username = $req->username;
+        $user->password = $req->password;
+        $user->name     = $req->name;
+       // $user->dept     = $req->dept;
+        $user->type     = $req->type;
+        $user->cgpa     = $req->cgpa;
+      // $user->profile_img     = '';
 
-       // return redirect('/home/userlist');
+        $user->save();
+       // echo $req->username;
+
+       return redirect('/home/userlist');
        $userlist = $this->getUserlist();
        //return view('home.list')->with('list', $userlist);
 

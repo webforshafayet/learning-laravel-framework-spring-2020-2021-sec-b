@@ -6,7 +6,12 @@
 <body>
 	<h1>Login Page</h1>
 	<form method="post">
-{{-- token verify --}}
+
+
+
+
+
+        {{-- token verify --}}
         {{-- @csrf --}}      {{-- to generate token which is his own  ------ --}}
 
         {{csrf_field()}}         {{-- to generate token which is his own   --}}

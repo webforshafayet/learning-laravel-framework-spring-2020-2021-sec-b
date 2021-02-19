@@ -127,12 +127,29 @@ class HomeController extends Controller
 
     }
 
-    public function getUserlist (){
+    // public function getUserlist (){
 
-        return [
-                ['id'=>1, 'name'=>'alamin', 'email'=> 'alamin@aiub.edu', 'password'=>'123'],
-                ['id'=>2, 'name'=>'abc', 'email'=> 'abc@aiub.edu', 'password'=>'456'],
-                ['id'=>3, 'name'=>'xyz', 'email'=> 'xyz@aiub.edu', 'password'=>'789']
-            ];
+    //     return [
+    //             ['id'=>1, 'name'=>'alamin', 'email'=> 'alamin@aiub.edu', 'password'=>'123'],
+    //             ['id'=>2, 'name'=>'abc', 'email'=> 'abc@aiub.edu', 'password'=>'456'],
+    //             ['id'=>3, 'name'=>'xyz', 'email'=> 'xyz@aiub.edu', 'password'=>'789']
+    //         ];
+    // }
+
+
+    public function delete($id){
+
+        $user = User::find($id);
+        return view('home.delete')->with('user', $user);
+    }
+
+    public function destroy($id){
+
+        if(User::destroy($id)){
+            return redirect('/home/userlist');
+        }else{
+            return redirect('/home/delete/'.$id);
+        }
+
     }
 }

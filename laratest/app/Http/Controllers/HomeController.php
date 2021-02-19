@@ -66,19 +66,21 @@ class HomeController extends Controller
     public function edit($id){
 
       //  return view('home.edit')->with('id', $id);
-        $userlist= $this->getUserlist();
-        $user = [];
+      //  $userlist= $this->getUserlist();
+      $user = User::find($id);
+      return view('home.edit')->with('user', $user);
 
-        foreach($userlist as $u){
-            if($u['id'] == $id ){
-                $user = $u;
-                break;
-            }
-        }
+
+        // foreach($userlist as $u){
+        //     if($u['id'] == $id ){
+        //         $user = $u;
+        //         break;
+        //     }
+        // }
 
        // return view('home.edit')->with('id',$id);
        //$user =  ['id'=>2, 'username'=>'abc', 'email'=> 'abc@aiub.edu', 'password'=>'456'];
-        return view('home.edit')->with('user', $user);
+        //return view('home.edit')->with('user', $user);
     }
 
     public function update($id, Request $req){
@@ -86,6 +88,15 @@ class HomeController extends Controller
         //$user = ['id'=> $id, 'name'=> $req->name, 'email'=> $req->email,'password'=>$req->password];
 
         //updating DB or model
+        $user = User::find($id);
+
+        $user->username = $req->username;
+        $user->name     = $req->name;
+        $user->password = $req->password;
+       // $user->dept     = $req->dept;
+        $user->type     = $req->type;
+        $user->save();
+
         return redirect('/home/userlist');
     }
     public function userlist(){

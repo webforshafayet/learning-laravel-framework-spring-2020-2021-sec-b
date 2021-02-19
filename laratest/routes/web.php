@@ -50,7 +50,7 @@ Route::get('/home/userlist', 'App\Http\Controllers\HomeController@userlist');
 Route::get('/home/create', 'App\Http\Controllers\HomeController@create')->middleware('sess');
 Route::post('/home/create', 'App\Http\Controllers\HomeController@store');
 
-Route::get('/home/edit/{id}', 'App\Http\Controllers\HomeController@edit');
+Route::get('/home/edit/{id}', 'App\Http\Controllers\HomeController@edit');//edittttt start
 Route::post('/home/edit/{id}', 'App\Http\Controllers\HomeController@update');
 
 Route::get('/home/delete/{id}', 'App\Http\Controllers\HomeController@delete');

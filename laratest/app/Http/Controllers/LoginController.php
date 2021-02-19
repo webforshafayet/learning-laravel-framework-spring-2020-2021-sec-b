@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 //use app\Models\User;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 class LoginController extends Controller
 {
     public function index(){
@@ -17,9 +18,15 @@ class LoginController extends Controller
 
     public function verify(Request $req){
 
-        $user = User::where('password', $req->password)
-                    ->where('username', $req->username)
-                    ->get();
+        // $user = User::where('password', $req->password)
+        //             ->where('username', $req->username)
+        //             ->get();
+
+
+        $user = DB::table('user_table')
+        ->where('password', $req->password)
+        ->where('username', $req->username)
+        ->get();
 
        // print_r($user);
          //echo count($user);

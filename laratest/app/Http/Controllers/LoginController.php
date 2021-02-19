@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-
+//use app\Models\User;
+use App\Models\User;
 class LoginController extends Controller
 {
     public function index(){
@@ -16,15 +17,26 @@ class LoginController extends Controller
 
     public function verify(Request $req){
 
+        $user = User::where('password', $req->password)
+                    ->where('username', $req->username)
+                    ->get();
+
+       // print_r($user);
+         //echo count($user);
+
+
         //echo $req -> username."<br>";
         //echo $req -> password;
 
          //echo "posted";
 
-         if($req->username == "" || $req->password == ""){
+        if($req->username == "" || $req->password == ""){
             $req->session()->flash('msg', 'Invalid username or password...');
             return redirect('/login');
-        }elseif($req->username == $req->password){
+        }
+        //elseif($req->username == $req->password)
+        elseif(count($user) > 0 )
+        {
 
             // $req->session()->put('username', $req->username); //put data in session
             // $req->session()->put('password', $req->password);
@@ -41,13 +53,14 @@ class LoginController extends Controller
              //$req->session()->flush(); // destroy all data password username
 
 
-              /* $req->session()->flash('msg', 'Invalid user info...');// flash data works for single time
+           /*  $req->session()->flash('msg', 'Invalid user info...');// flash data works for single time
             $req->session()->flash('error', 'Bad request error...');// when another call happen
             $req->session()->get('msg');
             $req->session()->keep('msg'); // for 2nd time use for flash data
-            $req->session()->get('msg'); */
+            $req->session()->get('msg');
             //$req->session()->reflash();// for all flash data keep will be called
             //$req->session()->pull('name'); // all type of data will be cut off or deleted
+            */
             $req->session()->put('username', $req->username);
             return redirect('/home');
         }else{

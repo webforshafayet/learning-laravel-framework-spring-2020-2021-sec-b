@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Faker\Guesser\Name;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -37,6 +38,12 @@ class HomeController extends Controller
             return redirect('/login');
         }
 
+    }
+    public function show($id){
+
+        $user = User::find($id);
+        //print_r($user);
+        return view('home.details')->with('user', $user);
     }
 
     public function create(){
@@ -92,7 +99,9 @@ class HomeController extends Controller
         //     ['id'=>2, 'name'=>'abc', 'email'=> 'abc@aiub.edu', 'password'=>'456'],
         //     ['id'=>3, 'name'=>'xyz', 'email'=> 'xyz@aiub.edu', 'password'=>'789']
         // ];
-        $userlist = $this->getUserlist();
+
+        $userlist = User::all();
+        //$userlist = $this->getUserlist();
         return view('home.list')->with('list', $userlist);
 
     }

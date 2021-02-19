@@ -56,4 +56,6 @@ Route::post('/home/edit/{id}', 'App\Http\Controllers\HomeController@update');
 Route::get('/home/delete/{id}', 'App\Http\Controllers\HomeController@delete');
 Route::post('/home/delete/{id}', 'App\Http\Controllers\HomeController@destroy');
 
+Route::get('/home/details/{id}', 'App\Http\Controllers\HomeController@show');
+
 });

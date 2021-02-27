@@ -45,12 +45,12 @@ Route::get('/logout', 'App\Http\Controllers\LogoutController@index');
 
 Route::group(['middleware'=> 'sess'], function(){
     Route::get('/home', 'App\Http\Controllers\HomeController@index')->middleware('sess');
-Route::get('/home/userlist', 'App\Http\Controllers\HomeController@userlist');
+Route::get('/home/userlist', 'App\Http\Controllers\HomeController@userlist')->name('home.userlist');
 
-Route::get('/home/create', 'App\Http\Controllers\HomeController@create')->middleware('sess');
+Route::get('/home/create', 'App\Http\Controllers\HomeController@create')->middleware('sess')->name('home.create');
 Route::post('/home/create', 'App\Http\Controllers\HomeController@store');
 
-Route::get('/home/edit/{id}', 'App\Http\Controllers\HomeController@edit');//edittttt start
+Route::get('/home/edit/{id}', 'App\Http\Controllers\HomeController@edit')->name('home.edit');//edittttt start
 Route::post('/home/edit/{id}', 'App\Http\Controllers\HomeController@update');
 
 Route::get('/home/delete/{id}', 'App\Http\Controllers\HomeController@delete');

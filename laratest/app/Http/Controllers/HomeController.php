@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Faker\Guesser\Name;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Validator;
+use App\Http\Requests\UserRequest;
 
 class HomeController extends Controller
 {
@@ -53,6 +55,19 @@ class HomeController extends Controller
 
     public function store(Request $req){
 
+
+        $validation = Validator::make($req->all(), [
+            'username' => 'required|max:5',
+            'password' => 'required|min:6',
+            'name'=>'required'
+        ]);
+
+        if($validation->fails()){
+             // return redirect('/home/create')->with('errors', $validation->errors());
+             // return redirect()->route('home.create')->with('errors', $validation->errors());
+             return Back()->with('errors', $validation->errors())->withInput();
+           }
+
         //insert into DB or model...
         $user = new User();
         $user->username = $req->username;
@@ -67,6 +82,7 @@ class HomeController extends Controller
        // echo $req->username;
 
        return redirect('/home/userlist');
+      // return redirect()->route('home.userlist');
        $userlist = $this->getUserlist();
        //return view('home.list')->with('list', $userlist);
 

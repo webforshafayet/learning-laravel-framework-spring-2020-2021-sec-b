@@ -53,10 +53,11 @@ class HomeController extends Controller
         return view('home.create');
     }
 
-    public function store(Request $req){
+   // public function store(Request $req){
+        public function store(UserRequest $req){
 
 
-        $validation = Validator::make($req->all(), [
+      /*  $validation = Validator::make($req->all(), [
             'username' => 'required|max:5',
             'password' => 'required|min:6',
             'name'=>'required'
@@ -66,8 +67,7 @@ class HomeController extends Controller
              // return redirect('/home/create')->with('errors', $validation->errors());
              // return redirect()->route('home.create')->with('errors', $validation->errors());
              return Back()->with('errors', $validation->errors())->withInput();
-           }
-
+           }*/
         //insert into DB or model...
         $user = new User();
         $user->username = $req->username;

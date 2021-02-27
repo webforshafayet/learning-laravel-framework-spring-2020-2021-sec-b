@@ -13,7 +13,7 @@ class UserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,8 +24,9 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|unique:user_table|max:5|bail',
-            'password' => 'required|min:6'
+            'username' => 'required|unique:user_table|max:5|bail', //uniqe---name is already taken,,bail-->only one error show
+            'password' => 'required|min:6',
+            'name' => 'required|min:6'
         ];
     }
 
@@ -33,7 +34,8 @@ class UserRequest extends FormRequest
         return [
 
             'username.required' => "can't left empty...",
-            'password.required' =>"can't left empty..."
+            'password.required' =>"can't left empty...",
+            'name.required' => "name can't left empty..."
         ];
     }
 }

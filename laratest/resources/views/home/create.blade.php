@@ -27,11 +27,14 @@
 				<tr>
 					<td>Name</td>
 					<td><input type="text" name="name" value="{{old('name')}}"></td>
+
 				</tr>
+
 				<tr>
 					<td>dept</td>
 					<td><input type="text" name="dept" value="{{old('dept')}}"></td>
 				</tr>
+
 				<tr>
 					<td>CGPA</td>
 					<td><input type="text" name="cgpa" value="{{old('cgpa')}}"></td>

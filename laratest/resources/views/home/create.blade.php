@@ -9,7 +9,7 @@
 <body>
     <h1>Create New user</h1>
 
-    <form method="post">
+    <form method="post"  enctype="multipart/form-data">
     	@csrf
 		<fieldset>
 			<legend>Add</legend>
@@ -48,6 +48,12 @@
 							<option value="admin"> ADMIN </option>
 							<option value="user"> USER </option>
 						</select>
+					</td>
+				</tr>
+                <tr>
+					<td>Image</td>
+					<td>
+						<input type="file" name="myfile">
 					</td>
 				</tr>
 				<tr>

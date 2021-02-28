@@ -69,21 +69,30 @@ class HomeController extends Controller
              return Back()->with('errors', $validation->errors())->withInput();
            }*/
         //insert into DB or model...
-        $user = new User();
-        $user->username = $req->username;
-        $user->password = $req->password;
-        $user->name     = $req->name;
-       // $user->dept     = $req->dept;
-        $user->type     = $req->type;
-        $user->cgpa     = $req->cgpa;
-      // $user->profile_img     = '';
+        if($req->hasFile('myfile')){
+            $file = $req->file('myfile');
+            // echo $file->getClientOriginalName()."<br>";
+            // echo $file->getClientOriginalExtension()."<br>";
+            // echo $file->getSize()."<br>";
+            $file->move('upload', $file->getClientOriginalName());
 
-        $user->save();
-       // echo $req->username;
+            $user = new User();
+            $user->username = $req->username;
+            $user->password = $req->password;
+            $user->name     = $req->name;
+           // $user->dept     = $req->dept;
+            $user->type     = $req->type;
+            $user->cgpa     = $req->cgpa;
+            $user->profile_img     = $file->getClientOriginalName();
 
-       return redirect('/home/userlist');
+            $user->save();
+           // echo $req->username;
+
+           return redirect('/home/userlist');
+        }
+
       // return redirect()->route('home.userlist');
-       $userlist = $this->getUserlist();
+      // $userlist = $this->getUserlist();
        //return view('home.list')->with('list', $userlist);
 
     }

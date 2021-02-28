@@ -12,6 +12,10 @@
 
 
 			<table>
+                <tr>
+					<td colspan="2">
+						<img src="{{asset('/upload')}}/{{$user['profile_img']}}" width="100px" height="100px"> </td>
+				</tr>
 				<tr>
 					<td>Name: </td>
 					<td>{{$user['name']}}</td>

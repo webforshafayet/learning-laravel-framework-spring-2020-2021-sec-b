@@ -74,7 +74,9 @@ class HomeController extends Controller
             // echo $file->getClientOriginalName()."<br>";
             // echo $file->getClientOriginalExtension()."<br>";
             // echo $file->getSize()."<br>";
-            $file->move('upload', $file->getClientOriginalName());
+           // $file->move('upload', $file->getClientOriginalName());
+            $filename = time().".".$file->getClientOriginalExtension();
+            $file->move('upload', $filename);
 
             $user = new User();
             $user->username = $req->username;

@@ -58,4 +58,6 @@ Route::post('/home/delete/{id}', 'App\Http\Controllers\HomeController@destroy');
 
 Route::get('/home/details/{id}', 'App\Http\Controllers\HomeController@show');
 
+
+
 });

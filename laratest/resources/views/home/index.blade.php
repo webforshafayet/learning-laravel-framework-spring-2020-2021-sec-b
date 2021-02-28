@@ -1,17 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Home Page</title>
-</head>
-<body>
+@extends('layout.main')
    <!-- <h1>Welcome home! {{ $name }}  </h1>-->
-    <h1>Welcome home! {{ session('username') }} </h1>
+   @section('nav_bar')
     <a href="/home/create">Create user</a> |
     <a href="/home/userlist">View user list</a> |
     <a href="/logout">logout</a>
      <br>{{ $id }}
     <br>
+    @endsection
 
 
-</body>
-</html>
+
+@section('page_title')
+<h1>Welcome home! {{ session('username') }} </h1>
+@endsection
+
+
+
+@section('title')
+Home | ABC.com
+@endsection
+

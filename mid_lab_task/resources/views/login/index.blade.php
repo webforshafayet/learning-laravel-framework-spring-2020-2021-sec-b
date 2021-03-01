@@ -34,6 +34,10 @@
 			</table>
 		</fieldset>
 
+        <a href="/home/registration"> Registration</a>
+
+
+
 	</form>
     {{session('msg')}}
     {{-- to declare invalid pasword username msg from logincontroller   --}}

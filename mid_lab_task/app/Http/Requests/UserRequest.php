@@ -25,9 +25,9 @@ class UserRequest extends FormRequest
     {
         return [
             'username' => 'required|unique:user_table|max:5|bail', //uniqe---name is already taken,,bail-->only one error show
-            'password' => 'required|min:6|max: 20',
-            'name' => 'required|min:6',
-            'email' => 'required|min:50|bail'
+            'password' => 'required|min:8|max: 20',
+            'name' => 'required|min:3|max: 20',
+            'email' => 'required|max:50|bail'
         ];
     }
 
@@ -36,7 +36,8 @@ class UserRequest extends FormRequest
 
             'username.required' => "can't left empty...",
             'password.required' =>"can't left empty...",
-            'name.required' => "name can't left empty..."
+            'name.required' => "name can't left empty...",
+            'email.required' => "email can't left empty..."
         ];
     }
 }

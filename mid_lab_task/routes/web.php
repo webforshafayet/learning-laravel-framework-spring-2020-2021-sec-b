@@ -59,5 +59,9 @@ Route::post('/home/delete/{id}', 'App\Http\Controllers\HomeController@destroy');
 Route::get('/home/details/{id}', 'App\Http\Controllers\HomeController@show');
 
 
+Route::get('/home/registration', 'App\Http\Controllers\HomeController@registrationcreate')->middleware('sess')->name('home.create');
+Route::post('/home/registration', 'App\Http\Controllers\HomeController@registrationstore');
+
+
 
 });

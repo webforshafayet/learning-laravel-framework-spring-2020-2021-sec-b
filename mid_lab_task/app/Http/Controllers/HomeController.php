@@ -11,27 +11,14 @@ use App\Http\Requests\UserRequest;
 class HomeController extends Controller
 {
     public function index(Request $req){
-          // return view('home.index');
-
-       // return view('home.index', ['name'=> 'xyz', 'id'=>12]);
-
-
-// alternative---------------------------------------------
 
 
 
 
-        // return view('home.index')
-        //       ->with('name', 'alamin')
-        //       ->with('id', '12');
-// alternative---------------------------------------------
+
         $name="shafayet";
         $id="12";
-        //  return view('home.index')
-        //          ->withName($name)
-        //          ->withId($id);
-// alternative---------------------------------------------
-        //return view('home.index', compact('id', 'name'));
+
 
         if($req->session()->has('username')){                   // page sequre unauthorized access
             return view('home.index', compact('id', 'name'));
@@ -53,28 +40,14 @@ class HomeController extends Controller
         return view('home.create');
     }
 
-   // public function store(Request $req){
+
         public function store(UserRequest $req){
 
 
-      /*  $validation = Validator::make($req->all(), [
-            'username' => 'required|max:5',
-            'password' => 'required|min:6',
-            'name'=>'required'
-        ]);
 
-        if($validation->fails()){
-             // return redirect('/home/create')->with('errors', $validation->errors());
-             // return redirect()->route('home.create')->with('errors', $validation->errors());
-             return Back()->with('errors', $validation->errors())->withInput();
-           }*/
-        //insert into DB or model...
         if($req->hasFile('myfile')){
             $file = $req->file('myfile');
-            // echo $file->getClientOriginalName()."<br>";
-            // echo $file->getClientOriginalExtension()."<br>";
-            // echo $file->getSize()."<br>";
-           // $file->move('upload', $file->getClientOriginalName());
+
             $filename = time().".".$file->getClientOriginalExtension();
             $file->move('upload', $filename);
 
@@ -88,22 +61,18 @@ class HomeController extends Controller
             $user->profile_img     = $file->getClientOriginalName();
 
             $user->save();
-           // echo $req->username;
+
 
            return redirect('/home/userlist');
         }
 
-      // return redirect()->route('home.userlist');
-      // $userlist = $this->getUserlist();
-       //return view('home.list')->with('list', $userlist);
+
 
     }
 
 
     public function edit($id){
 
-      //  return view('home.edit')->with('id', $id);
-      //  $userlist= $this->getUserlist();
       $user = User::find($id);
       return view('home.edit')->with('user', $user);
 
@@ -177,6 +146,42 @@ class HomeController extends Controller
         }else{
             return redirect('/home/delete/'.$id);
         }
+
+    }
+
+    public function registrationcreate(){
+
+        return view('login.registration');
+    }
+
+
+        public function registrationstore(UserRequest $req){
+
+
+
+        if($req->hasFile('myfile')){
+            $file = $req->file('myfile');
+
+            $filename = time().".".$file->getClientOriginalExtension();
+            $file->move('upload', $filename);
+
+            $user = new User();
+            $user->username = $req->username;
+            $user->password = $req->password;
+            $user->name     = $req->name;
+            $user->email     = $req->email;
+           // $user->dept     = $req->dept;
+            $user->type     = $req->type;
+            $user->cgpa     = $req->cgpa;
+            $user->profile_img     = $file->getClientOriginalName();
+
+            $user->save();
+
+
+            return redirect('/login');
+        }
+
+
 
     }
 }

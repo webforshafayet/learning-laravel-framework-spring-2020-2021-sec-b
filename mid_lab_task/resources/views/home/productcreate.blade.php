@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create  customer</title>
+    <title>Insert Product</title>
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
 </head>
 <body>
-    <h1>Create New customer</h1>
+    <h1>Insert Product</h1>
 
     <form method="post"  enctype="multipart/form-data">
     	@csrf
@@ -16,38 +16,33 @@
 			<legend>Add</legend>
 			<table>
 				<tr>
-					<td>Username</td>
+					<td>Product name:</td>
 
-					<td><input type="text" name="username" value="{{old('username')}}"></td>
+					<td><input type="text" name="productname" value="{{old('productname')}}"></td>
 				</tr>
 				<tr>
-					<td>Password</td>
+					<td>Catagory</td>
 
-					<td><input type="password" name="password" value="{{old('password')}}"></td>
+					<td><input type="text" name="catagory" value="{{old('catagory')}}"></td>
 				</tr>
 				<tr>
-					<td>Name</td>
-					<td><input type="text" name="name" value="{{old('name')}}"></td>
+					<td>Unit price</td>
+					<td><input type="text" name="unitprice" value="{{old('unitprice')}}"></td>
 
-				</tr>
-
-				<tr>
-					<td>dept</td>
-					<td><input type="text" name="dept" value="{{old('dept')}}"></td>
 				</tr>
 
 				<tr>
-					<td>CGPA</td>
-					<td><input type="text" name="cgpa" value="{{old('cgpa')}}"></td>
+					<td>details</td>
+					<td><input type="text" name="details" value="{{old('details')}}"></td>
 				</tr>
 
                 <tr>
 
-					<td>Type</td>
+					<td>status</td>
 					<td>
-						<select name='type'>
-							<option value="admin"> ADMIN </option>
-							<option value="user"> USER </option>
+						<select name='status'>
+							<option value="exist"> Exist </option>
+							<option value="Upcoming"> Upcoming </option>
 						</select>
 					</td>
 				</tr>

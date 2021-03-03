@@ -63,5 +63,23 @@ Route::get('/home/registration', 'App\Http\Controllers\HomeController@registrati
 Route::post('/home/registration', 'App\Http\Controllers\HomeController@registrationstore');
 
 
+// product---------------------------------
+
+
+
+Route::get('/home/productlist', 'App\Http\Controllers\HomeController@productlist')->name('home.productlist');
+
+Route::get('/home/productcreate', 'App\Http\Controllers\HomeController@productcreate')->middleware('sess')->name('home.productcreate');
+Route::post('/home/productcreate', 'App\Http\Controllers\HomeController@productstore');
+
+Route::get('/home/productedit/{id}', 'App\Http\Controllers\HomeController@productedit')->name('home.edit');//edittttt start
+Route::post('/home/productedit/{id}', 'App\Http\Controllers\HomeController@productupdate');
+
+Route::get('/home/productdelete/{id}', 'App\Http\Controllers\HomeController@productdelete');
+Route::post('/home/productdelete/{id}', 'App\Http\Controllers\HomeController@productdestroy');
+
+Route::get('/home/productdetails/{id}', 'App\Http\Controllers\HomeController@productshow');
+
+
 
 });

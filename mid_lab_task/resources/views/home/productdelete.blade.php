@@ -4,31 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit  customer</title>
+    <title>Delete Product</title>
 </head>
 <body>
-    <h1>Delete  customer</h1>
-    <a href="/home/userlist"> Back</a>
+    <h1>Delete Product</h1>
+    <a href="/home/productlist"> Back</a>
 			<table>
 				<tr>
-					<td>Name: </td>
-					<td>{{$user['name']}}</td>
+					<td>product Name: </td>
+					<td>{{$user['productname']}}</td>
 				</tr>
 				<tr>
-					<td>Username</td>
-					<td>{{ $user['username']}}</td>
+					<td>Catagory</td>
+					<td>{{ $user['catagory']}}</td>
 				</tr>
 				<tr>
-					<td>Password:</td>
-					<td>{{ $user['password']}}</td>
+					<td>Unit price:</td>
+					<td>{{ $user['unitprice']}}</td>
 				</tr>
                 <tr>
-					<td>CGPA</td>
-					<td>{{ $user['cgpa'] }}</td>
+					<td>details</td>
+					<td>{{ $user['details'] }}</td>
 				</tr>
 				<tr>
-					<td>Dept</td>
-					<td>{{ $user['dept'] }}</td>
+					<td>status</td>
+					<td>{{ $user['status'] }}</td>
 				</tr>
 				<tr>
 					<td>

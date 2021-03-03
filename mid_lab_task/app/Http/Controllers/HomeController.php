@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Faker\Guesser\Name;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Product;
 use Validator;
 use App\Http\Requests\UserRequest;
 
@@ -182,6 +183,111 @@ class HomeController extends Controller
         }
 
 
+
+    }
+
+
+
+    //product-----------------------------------------------------
+
+
+
+    public function productshow($id){
+
+        $user = Product::find($id);
+        //print_r($user);
+        return view('home.productdetails')->with('user', $user);
+    }
+
+
+
+
+    public function productcreate(){
+
+        return view('home.productcreate');
+    }
+
+
+        // public function productstore(UserRequest $req){
+            public function productstore(request $req){
+
+
+
+        if($req->hasFile('myfile')){
+            $file = $req->file('myfile');
+
+            $filename = time().".".$file->getClientOriginalExtension();
+            $file->move('upload', $filename);
+
+            $user = new Product();
+            $user->productname = $req->productname;
+            $user->catagory = $req->catagory;
+            $user->unitprice     = $req->unitprice;
+           // $user->dept     = $req->dept;
+            $user->status     = $req->status;
+            $user->details     = $req->details;
+            $user->image     = $file->getClientOriginalName();
+
+            $user->save();
+
+
+           return redirect('/home/productlist');
+        }
+
+
+
+    }
+
+
+    public function productedit($id){
+
+      $user =Product::find($id);
+      return view('home.productedit')->with('user', $user);
+
+
+    }
+
+    public function productupdate($id, Request $req){
+
+
+        $user = Product::find($id);
+
+        $user->productname = $req->productname;
+            $user->catagory = $req->catagory;
+            $user->unitprice     = $req->unitprice;
+           // $user->dept     = $req->dept;
+            $user->status     = $req->status;
+            $user->details     = $req->details;
+        $user->save();
+
+        return redirect('/home/productlist');
+    }
+    public function productlist(){
+
+
+
+        $userlist = Product::all();
+
+        return view('home.productlist')->with('list', $userlist);
+
+    }
+
+
+
+
+    public function productdelete($id){
+
+        $user = Product::find($id);
+        return view('home.productdelete')->with('user', $user);
+    }
+
+    public function productdestroy($id){
+
+        if(Product::destroy($id)){
+            return redirect('/home/productlist');
+        }else{
+            return redirect('/home/productdelete/'.$id);
+        }
 
     }
 }
